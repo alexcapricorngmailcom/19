@@ -4,15 +4,14 @@
 console.log(document.querySelector('#age-table'));
 // 2) Все элементы label внутри этой таблицы (их три).
 console.log(document.querySelectorAll('#age-table * label'));
-
 // 3) Первый td в этой таблице (со словом «Age»).
-console.log(document.querySelector('#age-table * td'));
+console.log(document.querySelector('#age-table td'));
 // 4) Форму form с именем name="search".
-console.log(document.querySelector('[name=search]'));
+console.log(document.querySelector('form[name="search"]'));
 // 5) Первый input в этой форме.
-console.log(document.querySelector('[name=search] input'));
+console.log(document.querySelector('form[name="search"] input'));
+console.log(document.querySelectorAll('form[name="search"] input')[1]);
 // 6) Последний input в этой форме.
-console.log(document.querySelector('[name=search] > input'));
 
 // P.S. Никаких document.getElementById('elem') и т.п. устаревшего хлама.
 
@@ -26,28 +25,17 @@ console.log();
 console.log('====================');
 console.log();
 
-let ul = document.createElement('ul');
-ul.className = 'task2';
 
-let parentElem = document.querySelector('body');
-let child = parentElem.insertBefore(ul, parentElem.lastChild);
+let elementUl = document.createElement('ul');
+elementUl.classList.add('list');
+document.body.append(elementUl);
 
+let str = prompt('Введите элемент списка');
 
-let text = prompt('Введите пункт списка');
-
-while (text) {
-    createLiElement(text);
-    text = prompt('Введите пункт списка');
+while (str) {
+    let elementLi = document.createElement('li');
+    elementLi.classList.add('list-item');
+    elementLi.innerText = str;
+    elementUl.append(elementLi);
+    str = prompt('Введите элемент списка');
 }
-
-function createLiElement(text) {
-    let li = document.createElement('li');
-    li.classList.add('task2-item');
-    li.innerText = text;
-    child.append(li);
-}
-
-console.log(document.querySelector('.task2'));
-
-
-
